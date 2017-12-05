@@ -119,7 +119,11 @@ void CDisplay::writeDMR(unsigned int slotNo, const std::string& src, bool group,
 		m_mode2 = MODE_IDLE;
 	}
 	writeDMRInt(slotNo, src, group, dst, type);
-//TTS
+	
+LogMessage ("Voice TG:%s",dst.c_str());
+LogMessage ("Voice Callsign:%s",src.c_str());
+	
+//TTS Voice
 	char voice[80];
 	strcpy (voice,"echo \"");
 		if (strcmp ("",src.c_str()) !=0){ 
@@ -195,7 +199,7 @@ for (char & c : s)
 		strcat(voice," Victor ");
 	}
 	else if (c == 'W'){
-		strcat(voice," Güisky ");
+		strcat(voice," GÃ¼isky ");
 	}
 	else if (c == 'X'){
 		strcat(voice," Exray ");
