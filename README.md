@@ -28,6 +28,10 @@ This software is licenced under the GPL v2 and is intended for amateur and educa
 
 ********* Special notes EA5SW mods **************
 
+All of this mods are build and tested ONLY in a Rapsberry Pi 2 and 3.
+It's possible that don't work with another hardware.
+
+
 New TTS (Text To Speech) callsigns via Festival are coded into the software and are ALWAYS active via internal card output
 
 All the callsigns are speaked into ICAO code. 
@@ -82,13 +86,23 @@ At this time displays:
 
 Some extra information:: Locator, City and Frequency.
 
-Real IP number at startup of Pi, etho or wlan detects. Temperature of Raspberry Pi. Real time Smeter for MMDVM Modems that outs RSSI information (MMDVM modes with radios as Motorola,for example) Fake Smeters for the rests of types (DVMEGA,HS_HAT,etc) Change of colors in sequence Idle/RX/TX of Hotspot. Talker Alias display of information send by master. Decode of TG number and display of picture associated to this TG. Now TG's are the EA most used. Decode of Callsign Prefix and display of picture associated to this Prefix.Now are the EA,EB & EC prefix Decode of 9990 and 4000 commands also displaying pictures Decode of own callsign and display of own picture. Remote Reboot and Shutdown of Pi eligible by sysop via DMR
+Real IP number at startup of Pi, etho or wlan detects.
+Temperature of Raspberry Pi.
+Real time Smeter for MMDVM Modems that outs RSSI information (MMDVM modes with radios as Motorola,for example)
+Fake Smeters for the rests of types (DVMEGA,HS_HAT,etc)
+Change of colors in sequence Idle/RX/TX of Hotspot.
+Talker Alias display of information send by master.
+Decode of TG number and display of picture associated to this TG.
+Now TG's are the EA most used.
+Decode of Callsign Prefix and display of picture associated to this Prefix.
+Now are the EA,EB & EC prefix
+Decode of 9990 and 4000 commands also displaying pictures
+Decode of own callsign and display of own picture.
+Remote Reboot,Shutdown,Wifi or change of net eligible by sysop via DMR
 
-Install & Run:
 
-For Nextion Displays:
-
-New entry in MMDVM.ini for path to config files in Nextion section: FilesConfig=/home/pi/MMDVMHost/etc/
+I add a new entry in MMDVM.ini for path to config files in Nextion section:
+FilesConfig=/home/pi/MMDVMHost/etc/
 
 You have now 6 config files (work in progress to put in only one), don't comment or delete any line, the code are simple and need to end with a C/R line to EOF
 
@@ -127,8 +141,6 @@ You control if the remote is active when 1 or deactivate when 0 into ctrl.ini
 99997 Send mm_plus command to start a new MMDDVMHost in dmrplus mode (mm_plus is an script file)
 99996 Send mm_gate command to start a new MMDDVMHost in DMRGateway mode (mm_gate is an script file)
 99995 Send mm_BM command to start a new MMDDVMHost in BrandMeister mode (mm_BM is an script file)
-99990 Wifi OFF
-99991 Wifi ON
 
 Only the Owner callsign are allowed to TX into those TG to activate functions.
 
@@ -160,12 +172,5 @@ Example TG codes:
 6 displays a XLX logo
 any other TG display a BrandMeister Logo.
 
-Code also have a small remote command to shutdown,reboot and change modes of operation, simply when TX into a determined TG number:
+Code also have a small remote command to shutdown,reboot and change modes of operation, simply when TX into a determined TG number as works in Nextion displays, same code numbers hardcoded into OLED.cpp
 
-99999 Reboot Raspberry
-99998 Shutdown Raspberry
-99997 Send mm_plus command to start a new MMDDVMHost in dmrplus mode (mm_plus is an script file)
-99996 Send mm_gate command to start a new MMDDVMHost in DMRGateway mode (mm_gate is an script file)
-99995 Send mm_BM command to start a new MMDDVMHost in BrandMeister mode (mm_BM is an script file)
-99990 Wifi OFF
-99991 Wifi ON
