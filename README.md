@@ -44,10 +44,16 @@ Default voices are english.
 
 if you want spanish voices install packages for Guadalinex:
 https://github.com/guadalinex-archive/hispavoces
+
 wget https://github.com/guadalinex-archive/hispavoces/raw/master/packages/festvox-palpc16k_1.0.0_all.deb
+
 wget https://github.com/guadalinex-archive/hispavoces/raw/master/packages/festvox-sflpc16k_1.0.0_all.deb
+
 sudo dkpg -i festvox-sflpc16k_1.0.0_all.deb
+
 sudo dkpg -i festvox-palpc16k_1.0.0_all.deb
+
+
 
 edit festival.scm and put last line prefered voice:
 
