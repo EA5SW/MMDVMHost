@@ -49,9 +49,9 @@ wget https://github.com/guadalinex-archive/hispavoces/raw/master/packages/festvo
 
 wget https://github.com/guadalinex-archive/hispavoces/raw/master/packages/festvox-sflpc16k_1.0.0_all.deb
 
-sudo dkpg -i festvox-sflpc16k_1.0.0_all.deb
+sudo dpkg -i festvox-sflpc16k_1.0.0_all.deb
 
-sudo dkpg -i festvox-palpc16k_1.0.0_all.deb
+sudo dpkg -i festvox-palpc16k_1.0.0_all.deb
 
 
 
