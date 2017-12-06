@@ -62,6 +62,7 @@ sudo nano /etc/festival.scm
 Copy & paste those lines:
 
 ;;(set! voice_default 'voice_JuntaDeAndalucia_es_sf_diphone)
+
 (set! voice_default 'voice_JuntaDeAndalucia_es_pa_diphone)
 
 
@@ -77,10 +78,15 @@ strcat(voice," Maik ");
 I put all operations in RAMDISK to no write or read on SD card, create a simple bash to execute before MMDVMHost to create a small ramdisk of 120K (or minor)
 
 #!/bin/bash
+
 sudo mkdir -p /ram
+
 sudo mount -t tmpfs -o size=120k tmpfs /ram
+
 sudo touch /ram/mm_voice.sh
+
 sudo chmod 777 /ram/mm_voice.sh
+
 
 
 
