@@ -65,6 +65,9 @@ Copy & paste those lines:
 
 (set! voice_default 'voice_JuntaDeAndalucia_es_pa_diphone)
 
+I prefer down sample rate at 14500Hz to slow a bit the voice:
+
+(Parameter.set 'Audio_Command "aplay -q -c 1 -t raw -f s16 -r 14500 $FILE")
 
 The code for voice are written into Display.cpp
 The phonetic in spanish changed, for example, Mike in spanish are best "Maik"
