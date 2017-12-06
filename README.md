@@ -186,4 +186,9 @@ any other TG display a BrandMeister Logo.
 
 Remote Commands work simply when TX into a determined TG or Private number as works in Nextion displays, same code numbers have hardcoded for all modes of MMDVMHost.
 
+To Compile:
+
+I made a new Makefile, to compile the OLED and Nextion code.
+make -f Makefile.EA5SW
+
 
