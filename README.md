@@ -116,19 +116,18 @@ Remote Reboot,Shutdown,Wifi or change of net eligible by sysop via DMR
 I add a new entry in MMDVM.ini for path to config files in Nextion section:
 FilesConfig=/home/pi/MMDVMHost/etc/
 
-You have now 6 config files (work in progress to put in only one), don't comment or delete any line, the code are simple and need to end with a C/R line to EOF
+You have now 5 config files (work in progress to put in only one), don't comment or delete any line, the code are simple and need to end with a C/R line to EOF
 
 info.ini contains information for MMDVM home screen:
 
 Callsign Location Frequency DMR Network Name
 
-ctrl.ini contains:
+prefixA.ini, prefixB.ini and prefixC.ini contains a list of prefix to combine for displkay a picture map into a Nextion.
+Example: EA-EA9, EB0-EB9,EC0-EC9, are the official prefix for Spain to hams (don't include a special stations)
 
-callsign of owner remote commands on/off TG number to shutdown Pi TG number to reboot Pi TG number to change mode to dmrplus network TG number to change mode to DmrGateway mode TG number to change mode to BrandMeister network
+tg.ini contains the number of the TG's (BrandMeister Network) to display a picture logo into a Nextion.
 
-prefixA.ini, prefixB.ini and prefixC.ini contains a list of prefix to combine for displkay a picture map into a Nextion. example: EA-EA9, EB0-EB9,EC0-EC9, are the official prefix for Spain to hams (don't include a special stations)
-
-tg.ini contains the number of the TG's (BrandMeister Network) to display a picture logo into a Nextion. The first TG number equals to picture 30 into the Nextion tft files.
+The first TG number equals to picture 30 into the Nextion tft files.
 
 Nextion tft (compiled) and hmi (source) files contain the pictures to work.
 
@@ -146,15 +145,13 @@ example: the TG localed in first position are 214, when receive a transmission o
 
 Remember that any change in tg.ini are needed to change in the Nextion Screen and upload again to the display.
 
-You control if the remote is active when 1 or deactivate when 0 into ctrl.ini
-
 99998 are Shutdown TG to transmit to shutdown the Pi
 99999 are Reboot TG to transmit to reboot the Pi
 99997 Send mm_plus command to start a new MMDDVMHost in dmrplus mode (mm_plus is an script file)
 99996 Send mm_gate command to start a new MMDDVMHost in DMRGateway mode (mm_gate is an script file)
 99995 Send mm_BM command to start a new MMDDVMHost in BrandMeister mode (mm_BM is an script file)
-
-Only the Owner callsign are allowed to TX into those TG to activate functions.
+99991 Active Wifi Interface
+99990 Desactive Wifi Interface
 
 
 Special notes for OLED displays:
@@ -184,5 +181,6 @@ Example TG codes:
 6 displays a XLX logo
 any other TG display a BrandMeister Logo.
 
-Code also have a small remote command to shutdown,reboot and change modes of operation, simply when TX into a determined TG number as works in Nextion displays, same code numbers hardcoded into OLED.cpp
+Remote Commands work simply when TX into a determined TG or Private number as works in Nextion displays, same code numbers have hardcoded for all modes of MMDVMHost.
+
 
