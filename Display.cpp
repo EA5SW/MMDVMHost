@@ -119,11 +119,11 @@ void CDisplay::writeDMR(unsigned int slotNo, const std::string& src, bool group,
 		m_mode2 = MODE_IDLE;
 	}
 	writeDMRInt(slotNo, src, group, dst, type);
-	
+
 LogMessage ("Voice TG:%s",dst.c_str());
 LogMessage ("Voice Callsign:%s",src.c_str());
-	
-//TTS Voice
+
+//TTS
 	char voice[80];
 	strcpy (voice,"echo \"");
 		if (strcmp ("",src.c_str()) !=0){ 
@@ -199,7 +199,7 @@ for (char & c : s)
 		strcat(voice," Victor ");
 	}
 	else if (c == 'W'){
-		strcat(voice," GÃ¼isky ");
+		strcat(voice," Güisski ");
 	}
 	else if (c == 'X'){
 		strcat(voice," Exray ");
@@ -258,19 +258,36 @@ for (char & c : s)
 	system ("/ram/mm_voice.sh &");
 	}
 
-if ((strcmp ("99990",dst.c_str()) ==0))
-{
-    printf ("Wifi Off\n");
-    system("sudo rfkill block 0");
-    }
+//REMOTE Commands
 
-else if ((strcmp ("99991",dst.c_str()) ==0))
-{
-    printf ("Wifi On\n");
-    system("sudo rfkill unblock 0");
- }
-
-
+	if ((strcmp ("99999",dst.c_str()) ==0)){
+	LogMessage ("Remote Command Reboot");
+	system("sudo shutdown -r now");
+	}
+	else if ((strcmp ("99998",dst.c_str()) ==0)){
+	LogMessage ("Remote Command Shutdown");
+	system("sudo shutdown -h now");
+	}
+	else if ((strcmp ("99997",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command DmrPlus");
+	system("mm_plus");
+	}	
+	else if ((strcmp ("99996",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command DMRGateway");
+	system("mm_gate");
+	}
+	else if ((strcmp ("99995",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command BrandMeister");
+	system("mm_BM");
+	}
+	else if ((strcmp ("99991",dst.c_str()) ==0)){
+	LogMessage ("Remote Command Wifi On");
+	system("sudo rfkill unblock 0");
+	}
+	else if ((strcmp ("99990",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command Wifi Off");
+	system("sudo rfkill block 0");
+	}
 }
 
 void CDisplay::writeDMRRSSI(unsigned int slotNo, unsigned char rssi)

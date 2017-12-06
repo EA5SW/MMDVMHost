@@ -619,100 +619,75 @@ if (strcmp ("9",dst.c_str()) ==0) {
       display.printf("%s%s", group ? "TG:" : "", dst.c_str());
 
 
-// ShutDown & Reboot compares
+// ShutDown & Reboot compares & print screen
 
 
-if ((strcmp ("99999",dst.c_str()) ==0))
-{
+if ((strcmp ("99999",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Reboot");
     display.display();
-    printf ("Reboot\n");
-    system("sudo shutdown -r now");
     delay (1000);
-
 }
 
-else if ((strcmp ("99998",dst.c_str()) ==0))
-{
+else if ((strcmp ("99998",dst.c_str()) ==0)) {
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("STOP");
     display.display();
-    printf ("Shutdown\n");
-    system("sudo shutdown -h now");
     delay (1000);
-
 }
 
 
-else if ((strcmp ("99997",dst.c_str()) ==0))
-{
+else if ((strcmp ("99997",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Load +");
     display.display();
-    printf ("DmrPlus\n");
-    system("mm_plus");
     delay (100);
-
 }
 
-else if ((strcmp ("99996",dst.c_str()) ==0))
-{
+else if ((strcmp ("99996",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Load Gate");
     display.display();
-    printf ("DMRGateway\n");
-    system("mm_gate");
     delay (100);
-
 }
 
-else if ((strcmp ("99995",dst.c_str()) ==0))
-{
+else if ((strcmp ("99995",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Load BM");
     display.display();
-    printf ("BrandMeister\n");
-    system("mm_BM");
     delay (100);
 }
-else if ((strcmp ("99990",dst.c_str()) ==0))
-{
+else if ((strcmp ("99990",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Wifi Off");
     display.display();
-    printf ("Wifi Off\n");
-    system("sudo rfkill block 0");
     }
 
-else if ((strcmp ("99991",dst.c_str()) ==0))
-{
+else if ((strcmp ("99991",dst.c_str()) ==0)){
     display.clearDisplay();
     OLED_statusbar();
     display.setCursor(20,OLED_LINE3);
     display.setTextSize(2);
     display.printf("Wifi On");
     display.display();
-    printf ("Wifi On\n");
-    system("sudo rfkill unblock 0");
  }
 
 

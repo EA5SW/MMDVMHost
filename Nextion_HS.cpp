@@ -366,7 +366,8 @@ void CNextion::writeDMRInt(unsigned int slotNo, const std::string& src, bool gro
 
 if (strcmp(type,"R") == 0) {
         sendCommand("t2.pco=2016");
-        sendCommand("t36.pco=2016");
+        sendCommand("j0.pco=1024");
+	sendCommand("t36.pco=2016");
         sendCommand("t36.txt=\"Busy\"");
 	sendCommand(text);
 
@@ -403,28 +404,6 @@ FILE *cfgfileTG;
     iTG++;
    }
   fclose(cfgfileTG);
-
-
-
-
-
-// READ INI SYSOP & CONTROL
-
- FILE *cfgfileCT;
- int maxlineCT = 256;
- int iCT=0;
- char ctrl[7][256];
-  std::string tct ("ctrl.ini"); 
-  std::string pathct ("");
-  pathct = m_filesConfig + tct;
-  const char* filect = pathct.c_str();
-  cfgfileCT = fopen (filect, "r");
-  if (cfgfileCT==NULL) printf("can't open file\n");
-  while (fgets(ctrl[iCT], maxlineCT, cfgfileCT)) {
-     ctrl[iCT][strlen(ctrl[iCT])-1] = '\0';
-    iCT++;
-   }  
- fclose(cfgfileCT);
 
 
 /* READ INI PREFIXES
@@ -534,39 +513,6 @@ else {
 		sendCommand("t2.font=11");
 		sendCommand(text);
 
-// Compare ShutDown Routines
-
-if ((strcmp (ctrl[3],dst.c_str()) ==0) && (strncmp (src.c_str(),ctrl[0],6) == 0) && (strcmp ("1",ctrl[1]) == 0)) 
-{
-	printf ("Reboot NOW\n");
-	system("sudo shutdown -r now");
-}
-
-else if ((strcmp (ctrl[2],dst.c_str()) ==0) && (strncmp (src.c_str(),ctrl[0],6) == 0) && (strcmp ("1",ctrl[1]) == 0)) 
-{
-printf ("Shutdown NOW\n");
-system("sudo shutdown -h now");
-close();
-}
-
-else if ((strcmp (ctrl[4],dst.c_str()) ==0) && (strncmp (src.c_str(),ctrl[0],6) == 0) && (strcmp ("1",ctrl[1]) == 0)) 
-{
-printf ("DmrPlusmode\n");
-system("mm_plus");
-}
-
-else if ((strcmp (ctrl[5],dst.c_str()) ==0) && (strncmp (src.c_str(),ctrl[0],6) == 0) && (strcmp ("1",ctrl[1]) == 0)) 
-{
-printf ("DMRGateway mode\n");
-system("mm_gate");
-}
-
-else if ((strcmp (ctrl[6],dst.c_str()) ==0) && (strncmp (src.c_str(),ctrl[0],6) == 0) && (strcmp ("1",ctrl[1]) == 0)) 
-{
-printf ("BrandMeister mode\n");
-system("mm_BM");
-}
-
 
 		::sprintf(text, "t3.txt=\"%s%s\"", group ? "TG: " : "", dst.c_str());
 
@@ -603,11 +549,6 @@ else if (strcmp ("4000",dst.c_str()) ==0) {
 	::sprintf(text, "p5.pic=11");
 	sendCommand(text);
 }
-else if (strcmp (ctrl[0],dst.c_str()) ==0) {
-        char text[130U];
-	::sprintf(text, "p5.pic=9");
-	sendCommand(text);
-}
 else if (strcmp ("9990",dst.c_str()) ==0) {
         char text[130U];
 	::sprintf(text, "p5.pic=7");
@@ -618,6 +559,23 @@ else if (strcmp ("6",dst.c_str()) ==0) {
 	::sprintf(text, "p5.pic=13");
 	sendCommand(text);
 }
+else if ((strcmp ("99991",dst.c_str()) ==0)){
+	char text[130U];
+	::sprintf(text, "p5.pic=14");
+	sendCommand(text);
+	}
+	else if ((strcmp ("99990",dst.c_str()) ==0)){
+	char text[130U];
+	::sprintf(text, "p5.pic=15");
+	sendCommand(text);
+	}
+/*
+else if (strcmp (callsign,dst.c_str()) ==0) {
+        char text[130U];
+	::sprintf(text, "p5.pic=9");
+	sendCommand(text);
+}
+*/
 
 else 
  {
@@ -627,11 +585,9 @@ else
 	sendCommand(text);
 }}
 
-
                 sendCommand ("t5.txt=\"RSSI: -10udBm\"");
                 sendCommand ("t7.txt=\"Ber: 0.0%\"");
 		sendCommand(text);
-
 
 	}
 
