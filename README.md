@@ -75,6 +75,7 @@ The phonetic in spanish changed, for example, Mike in spanish are best "Maik"
 search this lines to see how modify:
 
 else if (c == 'M'){
+
 strcat(voice," Maik ");
 
 
