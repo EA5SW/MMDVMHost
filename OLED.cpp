@@ -398,7 +398,7 @@ else if (m_duplex !=1U){
 if (m_displayScroll==1U){
      display.startscrollleft(0x00,0x0f); 
 }
-      display.drawBitmap(0, 0, plus_B, 128, 32, WHITE);
+      display.drawBitmap(0, 0, bm_B, 128, 26, WHITE);
       OLED_statusbar();
       display.setTextColor(WHITE);
       display.setCursor(0,OLED_LINE5);
@@ -588,7 +588,7 @@ if (strcmp ("8",dst.c_str())!=0 || strcmp ("6",dst.c_str()) !=0 || strcmp ("9",d
     display.drawBitmap(0, 0, XLX, 64, 16, WHITE);
       }
 
-if (strcmp ("9",dst.c_str()) ==0) {
+if (strcmp ("8",dst.c_str()) ==0) {
     display.fillRect(0, 0, display.width(), 16, BLACK);
     display.setTextColor(WHITE);
     display.setCursor(0,0);
