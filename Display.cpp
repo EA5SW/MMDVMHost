@@ -281,35 +281,35 @@ for (char & c : s)
 
 //REMOTE Commands
 
-	if ((strcmp ("99999",dst.c_str()) ==0)){
+	if ((strcmp ("99",dst.c_str()) ==0)){
 	LogMessage ("Remote Command Reboot");
 	system("sudo shutdown -r now");
 	}
-	else if ((strcmp ("99998",dst.c_str()) ==0)){
+	else if ((strcmp ("98",dst.c_str()) ==0)){
 	LogMessage ("Remote Command Shutdown");
 	system("sudo shutdown -h now");
 	}
-	else if ((strcmp ("99997",dst.c_str()) ==0)){
+	else if ((strcmp ("40",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command DmrPlus");
 	system("mm_plus");
 	}	
-	else if ((strcmp ("99996",dst.c_str()) ==0)){
+	else if ((strcmp ("50",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command DMRGateway");
 	system("mm_gate");
 	}
-	else if ((strcmp ("99995",dst.c_str()) ==0)){
+	else if ((strcmp ("30",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command BrandMeister");
 	system("mm_BM");
 	}
-	else if ((strcmp ("99991",dst.c_str()) ==0)){
+	else if ((strcmp ("21",dst.c_str()) ==0)){
 	LogMessage ("Remote Command Wifi On");
 	system("sudo rfkill unblock 0");
 	}
-	else if ((strcmp ("99990",dst.c_str()) ==0)){
+	else if ((strcmp ("20",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command Wifi Off");
 	system("sudo rfkill block 0");
 	}
-	else if ((strcmp ("99993",dst.c_str()) ==0)){
+	else if ((strcmp ("11",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command Audio On");
 	FILE *fp;
  	char cadena[20] = "1\n";
@@ -319,7 +319,7 @@ for (char & c : s)
 	fputs ("\n",fp);
  	fclose ( fp );	
 	}	
-	else if ((strcmp ("99994",dst.c_str()) ==0)){
+	else if ((strcmp ("10",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command Audio Off");
 	FILE *fp;
  	char cadena[20] = "0\n";
