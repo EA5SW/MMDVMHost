@@ -120,13 +120,31 @@ void CDisplay::writeDMR(unsigned int slotNo, const std::string& src, bool group,
 	}
 	writeDMRInt(slotNo, src, group, dst, type);
 
-LogMessage ("Voice TG:%s",dst.c_str());
-LogMessage ("Voice Callsign:%s",src.c_str());
+
+// INI File Read
+
+FILE *cfgfile;
+ int maxline = 256;
+ int i=0;
+ char ctrl[2][256];
+std::string path ("/home/pi/MMDVMHost/etc/ctrl.ini");
+
+const char* file = path.c_str();
+cfgfile = fopen (file, "r");
+if (cfgfile==NULL) printf("can't open file\n");
+  while (fgets(ctrl[i], maxline, cfgfile)) {
+     ctrl[i][strlen(ctrl[i])-1] = '\0';
+    i++;
+   }  
+ fclose(cfgfile);
+
+
+		if  (strncmp (ctrl[0],"1",1) == 0){ 
 
 //TTS
 	char voice[80];
 	strcpy (voice,"echo \"");
-		if (strcmp ("",src.c_str()) !=0){ 
+		if (strcmp (ctrl[1],src.c_str()) !=0){ 
 
 		std::string s =src.c_str();
 
@@ -256,7 +274,10 @@ for (char & c : s)
  	fclose ( fpa );
 	
 	system ("/ram/mm_voice.sh &");
+	LogMessage ("Voice TG:%s",dst.c_str());
+	LogMessage ("Voice Callsign:%s",src.c_str());
 	}
+}
 
 //REMOTE Commands
 
@@ -287,6 +308,28 @@ for (char & c : s)
 	else if ((strcmp ("99990",dst.c_str()) ==0)){
 	LogMessage  ("Remote Command Wifi Off");
 	system("sudo rfkill block 0");
+	}
+	else if ((strcmp ("99993",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command Audio On");
+	FILE *fp;
+ 	char cadena[20] = "1\n";
+ 	fp = fopen ( "/home/pi/MMDVMHost/etc/ctrl.ini", "r+" );
+ 	fputs( cadena, fp );
+	fputs(ctrl[1],fp);
+	fputs ("\n",fp);
+ 	fclose ( fp );	
+	}	
+	else if ((strcmp ("99994",dst.c_str()) ==0)){
+	LogMessage  ("Remote Command Audio Off");
+	FILE *fp;
+ 	char cadena[20] = "0\n";
+ 	fp = fopen ( "/home/pi/MMDVMHost/etc/ctrl.ini", "r+" );
+ 	fputs( cadena, fp );
+	fputs(ctrl[1],fp);
+	fputs ("\n",fp);
+ 	fclose ( fp );	
+
+	
 	}
 }
 
