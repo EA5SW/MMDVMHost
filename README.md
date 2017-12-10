@@ -53,8 +53,6 @@ sudo dpkg -i festvox-sflpc16k_1.0.0_all.deb
 
 sudo dpkg -i festvox-palpc16k_1.0.0_all.deb
 
-
-
 edit festival.scm and put last line prefered voice:
 
 sudo nano /etc/festival.scm
@@ -118,9 +116,19 @@ Remote Reboot,Shutdown,Wifi or change of net eligible by sysop via DMR
 
 
 I add a new entry in MMDVM.ini for path to config files in Nextion section:
+This path is hardcoded now in some routines, so please, use it.
+
 FilesConfig=/home/pi/MMDVMHost/etc/
 
-You have now 5 config files (work in progress to put in only one), don't comment or delete any line, the code are simple and need to end with a C/R line to EOF
+You have now 6 config files (work in progress to put in only one), don't comment or delete any line, the code are simple and need to end with a C/R line to EOF
+
+
+ ctrl.ini are control for voice.
+ 
+ 1 are active or 0 are inactive
+ callsign that you want NOT to speak, if you put here your own all sign only speak the another callsigns.
+ Put none to speak all callsigns included yours.
+ 
 
 info.ini contains information for MMDVM home screen:
 
@@ -149,13 +157,27 @@ example: the TG localed in first position are 214, when receive a transmission o
 
 Remember that any change in tg.ini are needed to change in the Nextion Screen and upload again to the display.
 
-99998 are Shutdown TG to transmit to shutdown the Pi
-99999 are Reboot TG to transmit to reboot the Pi
-99997 Send mm_plus command to start a new MMDDVMHost in dmrplus mode (mm_plus is an script file)
-99996 Send mm_gate command to start a new MMDDVMHost in DMRGateway mode (mm_gate is an script file)
-99995 Send mm_BM command to start a new MMDDVMHost in BrandMeister mode (mm_BM is an script file)
-99991 Active Wifi Interface
-99990 Desactive Wifi Interface
+Remote codes: 
+
+Send a private call to this numbers to execute commands:
+
+10 Desactive callsign oice 
+
+11 Active callsign voice
+
+20 Desactive Wifi Interface
+
+21 Active Wifi Interface
+
+30 Send mm_BM command to start a new MMDDVMHost in BrandMeister mode (mm_BM is an script file)
+
+40 Send mm_plus command to start a new MMDDVMHost in dmrplus mode (mm_plus is an script file)
+
+50 Send mm_gate command to start a new MMDDVMHost in DMRGateway mode (mm_gate is an script file)
+
+98 are Shutdown command to shutdown the Pi
+
+99 are Reboot command to reboot the Pi
 
 
 Special notes for OLED displays:
